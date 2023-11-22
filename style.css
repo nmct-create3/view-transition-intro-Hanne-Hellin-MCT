@@ -1,72 +1,195 @@
 :root {
-    --color-purple: oklch(0.44 0.23 311.11);
-    --color-pink: oklch(0.66 0.26 16.42);
-    --color-yellow: oklch(0.84 0.2 86.18);
-    --color-ocean: oklch(0.7 0.25 151.84);
+  --color-purple: oklch(0.44 0.23 311.11);
+  --color-pink: oklch(0.66 0.26 16.42);
+  --color-yellow: oklch(0.84 0.2 86.18);
+  --color-ocean: oklch(0.7 0.25 151.84);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-from-bottom {
+  from {
+    transform: translateY(30px);
+  }
+}
+
+@keyframes slide-to-bottom {
+  to {
+    transform: translateY(30px);
+  }
+}
+
+::view-transition-old(root) {
+  animation: 90ms ease-in both fade-out, 300ms ease both slide-to-bottom;
+}
+
+::view-transition-new(root) {
+  animation: 90ms ease-in both fade-in, 300ms ease both slide-from-bottom;
 }
 
 /* reset */
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* global page styles */
 
 html {
-    font-size: 125%;
-    font-family: "Nunito", sans-serif;
-    /* smooth font rendering */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-size: 125%;
+  font-family: 'Nunito', sans-serif;
+  /* smooth font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-    margin: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  place-items: center;
+
+  width: 100vw;
+  height: 100vh;
 }
 
 svg,
 img {
-    display: block;
-    max-width: 100%;
-    height: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 h1 {
-    font-size: 6rem;
-    margin: 0;
+  font-size: 6rem;
+  margin: 0;
 }
 
 /* objects */
 
 .list-reset {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* components */
 
-.nav__list {}
+.nav__list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 20vw 20vw;
+  grid-template-rows: 20vh 20vh;
+  gap: 1.5rem;
+}
 
-.nav__item {}
+.nav__item {
+  display: grid;
+  place-items: center;
+  border-radius: 0.5rem;
+}
 
-.nav__link {}
+.nav__link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  border-radius: 0.5rem;
+}
 
 /* give the links a different background color */
 
-.page {}
+.page {
+  height: 90vh;
+  width: 90vw;
+  background-color: var(--color-purple);
+  border-radius: 0.5rem;
+  display: grid;
+  place-items: center;
+  color: white;
+}
 
+.nav__link--one {
+  background-color: var(--color-purple);
+}
+
+.nav__link--two {
+  background-color: var(--color-ocean);
+}
+
+.nav__link--three {
+  background-color: var(--color-yellow);
+}
+
+.nav__link--four {
+  background-color: var(--color-pink);
+}
 /* give the pages a different background color */
 
-.page--one {}
+.page--one {
+  background-color: var(--color-purple);
+}
 
-.page--two {}
+.page--two {
+  background-color: var(--color-ocean);
+}
 
-.page--three {}
+.page--three {
+  background-color: var(--color-yellow);
+}
 
-.page--four {}
+.page--four {
+  background-color: var(--color-pink);
+}
 
-.page__back {}
+.page__back {
+}
 
 .page__body,
-.page__back {}
+.page__back {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.page__back {
+  align-self: start;
+  justify-self: end;
+  padding: 1rem;
+  display: grid;
+  color: currentColor;
+}
+
+.page__body {
+  text-align: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
